@@ -3,7 +3,8 @@ import {HttpClientTestingModule, HttpTestingController} from "@angular/common/ht
 
 import {CoursesService} from "./courses.service";
 import {Course} from "../model/course";
-import {COURSES} from "../../../../server/db-data";
+import {COURSES, findLessonsForCourse} from "../../../../server/db-data";
+import {Lesson} from "../model/lesson";
 
 describe("CoursesService", () => {
   const httpReturnCourses = Object.values(COURSES) as Course[];
@@ -26,7 +27,7 @@ describe("CoursesService", () => {
     httpTestingController.verify();
   });
 
-  it("findAllCourses should return expected courses (HttpClient called once)", () => {
+  it("findAllCourses should return expected courses", () => {
     const expectedCourses: Course[] = Object.values(COURSES);
 
     const res = coursesService.findAllCourses();
@@ -39,7 +40,7 @@ describe("CoursesService", () => {
     expect(req.request.method).toBe("GET");
   });
 
-  it("findCourseById should return expected course (HttpClient called once)", () => {
+  it("findCourseById should return expected course", () => {
     const expectedCourse = COURSES[12] as Course;
 
     const res = coursesService.findCourseById(12);
@@ -52,17 +53,56 @@ describe("CoursesService", () => {
     expect(req.request.method).toBe("GET");
   });
 
-  it("saveCourse should return expected course (HttpClient called once)", () => {
-    const change = {category: "New category"} as Partial<Course>;
-    const expectedCourse = {...COURSES[1], ...change};
+  describe("saveCourse should", () => {
+    it("return expected course", () => {
+      const change = {category: "New category"} as Partial<Course>;
+      const expectedCourse = {...COURSES[1], ...change};
 
-    const res = coursesService.saveCourse(1, change);
+      const res = coursesService.saveCourse(1, change);
 
-    res.subscribe(course => expect(course).toEqual(expectedCourse));
+      res.subscribe(course => expect(course).toEqual(expectedCourse));
 
-    const req = httpTestingController.expectOne('/api/courses/1');
-    req.flush(expectedCourse);
+      const req = httpTestingController.expectOne('/api/courses/1');
+      req.flush(expectedCourse);
 
-    expect(req.request.method).toBe("PUT");
+      expect(req.request.method).toBe("PUT");
+    });
+
+    it("throw an error", () => {
+      const expectedErrorProps = {status: 500, statusText: "Server error"};
+      const mockError = new ProgressEvent("error");
+      const change = {category: "New category"} as Partial<Course>;
+
+      const res = coursesService.saveCourse(1, change);
+
+      res.subscribe({
+        next: () => fail("Should throw an error"),
+        error: error => {
+          expect(error.status).toBe(expectedErrorProps.status);
+          expect(error.statusText).toBe(expectedErrorProps.statusText);
+        },
+      });
+
+      const req = httpTestingController.expectOne('/api/courses/1');
+      req.error(mockError, expectedErrorProps);
+
+      expect(req.request.method).toBe("PUT");
+    });
+  })
+
+  it("findLessons should return expected lessons", () => {
+    const expectedLessons = (findLessonsForCourse(1) as Lesson[]).slice(0, 3);
+
+    coursesService.findLessons(1).subscribe(lessons => expect(lessons).toBe(expectedLessons));
+
+    const req = httpTestingController.expectOne(request => request.url === "/api/lessons");
+    req.flush({payload: expectedLessons});
+
+    expect(req.request.method).toBe("GET");
+    expect(req.request.params.get("courseId")).toBe("1");
+    expect(req.request.params.get("filter")).toBe("");
+    expect(req.request.params.get("sortOrder")).toBe("asc");
+    expect(req.request.params.get("pageNumber")).toBe("0");
+    expect(req.request.params.get("pageSize")).toBe("3");
   });
 });
