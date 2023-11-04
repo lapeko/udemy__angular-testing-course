@@ -1,5 +1,4 @@
 export const COURSES: any = {
-
   12: {
     id: 12,
     titles: {
@@ -12,7 +11,6 @@ export const COURSES: any = {
     url: 'angular-testing-course',
     lessonsCount: 10,
   },
-
   2: {
     id: 2,
     titles: {
@@ -25,7 +23,6 @@ export const COURSES: any = {
     seqNo: 1,
     url: 'angular-core-course'
   },
-
   3: {
     id: 3,
     titles: {
@@ -39,7 +36,6 @@ export const COURSES: any = {
     seqNo: 2,
     url: 'rxjs-course'
   },
-
   4: {
     id: 4,
     titles: {
@@ -53,7 +49,6 @@ export const COURSES: any = {
     seqNo: 3,
     url: 'ngrx-course'
   },
-
   1: {
     id: 1,
     titles: {
@@ -66,7 +61,6 @@ export const COURSES: any = {
     seqNo: 4,
     url: 'serverless-angular'
   },
-
   5: {
     id: 5,
     titles: {
@@ -80,7 +74,6 @@ export const COURSES: any = {
     seqNo: 5,
     url: 'angular-for-beginners'
   },
-
   6: {
     id: 6,
     titles: {
@@ -94,7 +87,6 @@ export const COURSES: any = {
     seqNo: 6,
     url: 'angular-security-course'
   },
-
   7: {
     id: 7,
     titles: {
@@ -108,7 +100,6 @@ export const COURSES: any = {
     seqNo: 7,
     url: 'angular-pwa-course'
   },
-
   8: {
     id: 8,
     titles: {
@@ -121,7 +112,6 @@ export const COURSES: any = {
     seqNo: 8,
     url: 'angular-advanced-course'
   },
-
   9: {
     id: 9,
     titles: {
@@ -134,7 +124,6 @@ export const COURSES: any = {
     seqNo: 9,
     url: 'typescript-course'
   },
-
   10: {
     id: 10,
     titles: {
@@ -147,7 +136,6 @@ export const COURSES: any = {
     seqNo: 10,
     url: 'rxjs-patterns-course'
   },
-
   11: {
     id: 11,
     titles: {
@@ -159,12 +147,10 @@ export const COURSES: any = {
     seqNo: 11,
     url: 'angular-material-course'
   }
-
 };
 
 
 export const LESSONS = {
-
   1: {
     id: 1,
     'description': 'Angular Tutorial For Beginners - Build Your First App - Hello World Step By Step',
@@ -235,9 +221,6 @@ export const LESSONS = {
     'seqNo': 10,
     courseId: 5
   },
-
-
-  // Security Course
   11: {
     id: 11,
     'description': 'Course Helicopter View',
@@ -245,7 +228,6 @@ export const LESSONS = {
     'seqNo': 1,
     courseId: 6
   },
-
   12: {
     id: 12,
     'description': 'Installing Git, Node, NPM and Choosing an IDE',
@@ -253,7 +235,6 @@ export const LESSONS = {
     'seqNo': 2,
     courseId: 6
   },
-
   13: {
     id: 13,
     'description': 'Installing The Lessons Code - Learn Why Its Essential To Use NPM 5',
@@ -261,7 +242,6 @@ export const LESSONS = {
     'seqNo': 3,
     courseId: 6
   },
-
   14: {
     id: 14,
     'description': 'How To Run Node In TypeScript With Hot Reloading',
@@ -269,7 +249,6 @@ export const LESSONS = {
     'seqNo': 4,
     courseId: 6
   },
-
   15: {
     id: 15,
     'description': 'Guided Tour Of The Sample Application',
@@ -319,10 +298,6 @@ export const LESSONS = {
     'seqNo': 11,
     courseId: 6
   },
-
-
-  // PWA course
-
   22: {
     id: 22,
     'description': 'Course Kick-Off - Install Node, NPM, IDE And Service Workers Section Code',
@@ -351,7 +326,6 @@ export const LESSONS = {
     'seqNo': 4,
     courseId: 7
   },
-
   26: {
     id: 26,
     'description': 'Downloading The Offline Page - The Service Worker Installation Phase',
@@ -380,9 +354,6 @@ export const LESSONS = {
     'seqNo': 8,
     courseId: 7
   },
-
-  // Serverless Angular with Firebase Course
-
   30: {
     id: 30,
     description: 'Development Environment Setup',
@@ -390,7 +361,6 @@ export const LESSONS = {
     'seqNo': 1,
     courseId: 1
   },
-
   31: {
     id: 31,
     description: 'Introduction to the Firebase Ecosystem',
@@ -398,7 +368,6 @@ export const LESSONS = {
     'seqNo': 2,
     courseId: 1
   },
-
   32: {
     id: 32,
     description: 'Importing Data into Firestore',
@@ -406,7 +375,6 @@ export const LESSONS = {
     'seqNo': 3,
     courseId: 1
   },
-
   33: {
     id: 33,
     description: 'Firestore Documents in Detail',
@@ -414,7 +382,6 @@ export const LESSONS = {
     'seqNo': 4,
     courseId: 1
   },
-
   34: {
     id: 34,
     description: 'Firestore Collections in Detail',
@@ -422,7 +389,6 @@ export const LESSONS = {
     'seqNo': 5,
     courseId: 1
   },
-
   35: {
     id: 35,
     description: 'Firestore Unique Identifiers',
@@ -430,7 +396,6 @@ export const LESSONS = {
     'seqNo': 6,
     courseId: 1
   },
-
   36: {
     id: 36,
     description: 'Querying Firestore Collections',
@@ -438,7 +403,6 @@ export const LESSONS = {
     'seqNo': 7,
     courseId: 1
   },
-
   37: {
     id: 37,
     description: 'Firebase Security Rules In Detail',
@@ -446,7 +410,6 @@ export const LESSONS = {
     'seqNo': 8,
     courseId: 1
   },
-
   38: {
     id: 38,
     description: 'Firebase Cloud Functions In Detail',
@@ -454,7 +417,6 @@ export const LESSONS = {
     'seqNo': 9,
     courseId: 1
   },
-
   39: {
     id: 39,
     description: 'Firebase Storage In Detail',
@@ -462,10 +424,6 @@ export const LESSONS = {
     'seqNo': 10,
     courseId: 1
   },
-
-
-  // Angular Testing Course
-
   40: {
     id: 40,
     description: 'Angular Testing Course - Helicopter View',
@@ -473,7 +431,6 @@ export const LESSONS = {
     'seqNo': 1,
     courseId: 12
   },
-
   41: {
     id: 41,
     description: 'Setting Up the Development Environment',
@@ -481,7 +438,6 @@ export const LESSONS = {
     'seqNo': 2,
     courseId: 12
   },
-
   42: {
     id: 42,
     description: 'Introduction to Jasmine, Spies and specs',
@@ -489,7 +445,6 @@ export const LESSONS = {
     'seqNo': 3,
     courseId: 12
   },
-
   43: {
     id: 43,
     description: 'Introduction to Service Testing',
@@ -497,7 +452,6 @@ export const LESSONS = {
     'seqNo': 4,
     courseId: 12
   },
-
   44: {
     id: 44,
     description: 'Settting up the Angular TestBed',
@@ -505,7 +459,6 @@ export const LESSONS = {
     'seqNo': 5,
     courseId: 12
   },
-
   45: {
     id: 45,
     description: 'Mocking Angular HTTP requests',
@@ -513,7 +466,6 @@ export const LESSONS = {
     'seqNo': 6,
     courseId: 12
   },
-
   46: {
     id: 46,
     description: 'Simulating Failing HTTP Requests',
@@ -521,7 +473,6 @@ export const LESSONS = {
     'seqNo': 7,
     courseId: 12
   },
-
   47: {
     id: 47,
     description: 'Introduction to Angular Component Testing',
@@ -529,7 +480,6 @@ export const LESSONS = {
     'seqNo': 8,
     courseId: 12
   },
-
   48: {
     id: 48,
     description: 'Testing Angular Components without the DOM',
@@ -537,7 +487,6 @@ export const LESSONS = {
     'seqNo': 9,
     courseId: 12
   },
-
   49: {
     id: 49,
     description: 'Testing Angular Components with the DOM',
@@ -545,12 +494,7 @@ export const LESSONS = {
     'seqNo': 10,
     courseId: 12
   }
-
-
 };
-
-
-
 
 export function findCourseById(courseId: number) {
   return COURSES[courseId];
