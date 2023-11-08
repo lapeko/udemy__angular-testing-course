@@ -1,4 +1,4 @@
-import {ComponentFixture, fakeAsync, flush, TestBed, tick, waitForAsync} from '@angular/core/testing';
+import {ComponentFixture, fakeAsync, flush, TestBed, waitForAsync} from '@angular/core/testing';
 import {DebugElement} from '@angular/core';
 import {of} from "rxjs";
 import {By} from "@angular/platform-browser";
@@ -81,7 +81,6 @@ describe('HomeComponent', () => {
     click(tabs[1]);
     fixture.detectChanges();
 
-    tick();
     flush();
     fixture.detectChanges();
 

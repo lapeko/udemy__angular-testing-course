@@ -6,7 +6,6 @@ describe("bla bla", () => {
 
     setTimeout(() => bool = true, 1000);
 
-    tick();
     flush();
 
     expect(bool).toBeTruthy();
