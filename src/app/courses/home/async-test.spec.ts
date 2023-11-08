@@ -1,4 +1,4 @@
-import {fakeAsync, flush, flushMicrotasks} from "@angular/core/testing";
+import {fakeAsync, flush, flushMicrotasks, tick} from "@angular/core/testing";
 
 describe("bla bla", () => {
   it("test timout 1", (done) => {
@@ -35,5 +35,26 @@ describe("bla bla", () => {
       });
 
     flushMicrotasks();
+  }));
+
+  fit("mix micro and macrotasks", fakeAsync(() => {
+    let counter = 0;
+
+    Promise.resolve()
+      .then(() => {
+        counter += 10;
+        setTimeout(() => counter++, 1000);
+      });
+
+    expect(counter).toBe(0);
+
+    flushMicrotasks();
+    expect(counter).toBe(10);
+
+    tick(500);
+    expect(counter).toBe(10);
+
+    tick(500);
+    expect(counter).toBe(11);
   }));
 });
