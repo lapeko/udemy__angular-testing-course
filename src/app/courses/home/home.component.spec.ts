@@ -86,6 +86,5 @@ describe('HomeComponent', () => {
 
     const titles = el.queryAll(By.css("mat-card-title")).map(m => m.nativeElement.innerText);
     expect(titles[0]).toBe("Angular Security Course - Web Security Fundamentals");
-
   }));
 });
