@@ -1,4 +1,4 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {ComponentFixture, fakeAsync, flush, TestBed, tick, waitForAsync} from '@angular/core/testing';
 import {DebugElement} from '@angular/core';
 import {of} from "rxjs";
 import {By} from "@angular/platform-browser";
@@ -72,15 +72,21 @@ describe('HomeComponent', () => {
   });
 
 
-  fit("should display advanced courses when tab clicked", () => {
+  it("should display advanced courses when tab clicked", fakeAsync(() => {
     coursesService.findAllCourses.and.returnValue(of(allCourses));
     fixture.detectChanges();
 
     const tabs = el.queryAll(By.css(".mdc-tab"));
+    expect(tabs.length).toBeGreaterThan(1);
     click(tabs[1]);
     fixture.detectChanges();
 
+    tick();
+    fixture.detectChanges();
+
     const titles = el.queryAll(By.css("mat-card-title")).map(m => m.nativeElement.innerText);
-    expect(1).toBe(1);
-  });
+    expect(titles[0]).toBe("Angular Security Course - Web Security Fundamentals");
+
+    flush();
+  }));
 });
