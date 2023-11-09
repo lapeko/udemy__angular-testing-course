@@ -1,4 +1,6 @@
 import {fakeAsync, flush, flushMicrotasks, tick} from "@angular/core/testing";
+import {delay} from "rxjs/operators";
+import {of} from "rxjs";
 
 describe("bla bla", () => {
   it("test timout 1", (done) => {
@@ -37,7 +39,7 @@ describe("bla bla", () => {
     flushMicrotasks();
   }));
 
-  fit("mix micro and macrotasks", fakeAsync(() => {
+  it("mix micro and macrotasks", fakeAsync(() => {
     let counter = 0;
 
     Promise.resolve()
@@ -56,5 +58,18 @@ describe("bla bla", () => {
 
     tick(500);
     expect(counter).toBe(11);
+  }));
+
+  it("test observable", fakeAsync(() => {
+    let bool = false;
+
+    const observable = of(null).pipe(delay(1000));
+
+    observable.subscribe(() => {
+      bool = true;
+    });
+
+    tick(1000);
+    expect(bool).toBeTruthy();
   }));
 });
