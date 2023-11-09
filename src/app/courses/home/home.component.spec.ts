@@ -9,6 +9,7 @@ import {CoursesModule} from "../courses.module";
 import {CoursesService} from "../services/courses.service";
 import {setupCourses} from "../common/setup-test-data";
 import {click} from "../common/test-utils";
+import {Course} from "../model/course";
 
 describe('HomeComponent', () => {
   const allCourses = setupCourses();
@@ -46,7 +47,7 @@ describe('HomeComponent', () => {
 
 
   it("should display only beginner courses", () => {
-    coursesService.findAllCourses.and.returnValue(of(beginnerCourses));
+    mockCourses(beginnerCourses);
     fixture.detectChanges();
 
     const tabs = el.queryAll(By.css(".mdc-tab"));
@@ -55,7 +56,7 @@ describe('HomeComponent', () => {
 
 
   it("should display only advanced courses", () => {
-    coursesService.findAllCourses.and.returnValue(of(advancedCourses));
+    mockCourses(advancedCourses);
     fixture.detectChanges();
 
     const tabs = el.queryAll(By.css(".mdc-tab"));
@@ -64,7 +65,7 @@ describe('HomeComponent', () => {
 
 
   it("should display both tabs", () => {
-    coursesService.findAllCourses.and.returnValue(of(allCourses));
+    mockCourses(allCourses);
     fixture.detectChanges();
 
     const tabs = el.queryAll(By.css(".mdc-tab"));
@@ -72,8 +73,8 @@ describe('HomeComponent', () => {
   });
 
 
-  it("should display advanced courses when tab clicked", fakeAsync(() => {
-    coursesService.findAllCourses.and.returnValue(of(allCourses));
+  it("should display advanced courses when tab clicked - fakeAsync", fakeAsync(() => {
+    mockCourses(allCourses);
     fixture.detectChanges();
 
     const tabs = el.queryAll(By.css(".mdc-tab"));
@@ -87,4 +88,25 @@ describe('HomeComponent', () => {
     const titles = el.queryAll(By.css("mat-card-title")).map(m => m.nativeElement.innerText);
     expect(titles[0]).toBe("Angular Security Course - Web Security Fundamentals");
   }));
+
+  it("should display advanced courses when tab clicked - waitForAsync", waitForAsync(async () => {
+    mockCourses(allCourses);
+    fixture.detectChanges();
+
+    const tabs = el.queryAll(By.css(".mdc-tab"));
+    expect(tabs.length).toBeGreaterThan(1);
+    click(tabs[1]);
+    fixture.detectChanges();
+
+    await fixture.whenStable();
+
+    fixture.detectChanges();
+    const titles = el.queryAll(By.css("mat-card-title")).map(m => m.nativeElement.innerText);
+    expect(titles[0]).toBe("Angular Security Course - Web Security Fundamentals");
+  }));
+
+  function mockCourses(courses: Course[]) {
+    coursesService.findAllCourses.and.returnValue(of(courses));
+  }
 });
+
